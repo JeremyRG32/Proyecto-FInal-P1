@@ -161,7 +161,7 @@
             sidebar.MaximumSize = new Size(356, 891);
             sidebar.MinimumSize = new Size(75, 100);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(306, 891);
+            sidebar.Size = new Size(75, 891);
             sidebar.TabIndex = 54;
             // 
             // pictureBox2
