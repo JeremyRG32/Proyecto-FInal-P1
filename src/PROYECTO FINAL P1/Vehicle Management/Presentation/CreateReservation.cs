@@ -69,7 +69,7 @@ namespace Vehicle_Management.Presentation
                 Reservation reservation = new Reservation();
                 reservation.IsVehicleAvailable(vehicleidtopass);
                 reservation.AddReservation(reservationDTO, vehicleidtopass, clientidtopass);
-                MessageBox.Show("Vehiculo reservado recuerde que tiene una semana para pagar y retirar su vehiculo", "Reservación", MessageBoxButtons.OK);
+                MessageBox.Show("Vehiculo reservado recuerde que la reserva comienza un dia despues y luego tendrauna semana para pagar y retirar su vehiculo", "Reservación", MessageBoxButtons.OK);
             }
             catch (ArgumentException ex)
             {

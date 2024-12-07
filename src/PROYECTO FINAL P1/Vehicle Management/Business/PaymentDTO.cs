@@ -31,23 +31,5 @@ namespace Vehicle_Management.Business
             if (!allowedMethods.Contains(PaymentMethod))
                 throw new ArgumentException($"El metodo de pago debe ser uno de los siguientes: {string.Join(", ", allowedMethods)}.");
         }
-        public PaymentDTO PopulatePayment(Reservation reservation, string paymentmethod)
-        {
-            try
-            {
-                PaymentDTO paymentDTO = new PaymentDTO();
-                paymentDTO.ReservationId = reservation.ReservationId;
-                paymentDTO.Amount = reservation.Vehicle.Price;
-                paymentDTO.PaymentDate = DateOnly.FromDateTime(DateTime.Now);
-                paymentDTO.PaymentMethod = paymentmethod;
-                paymentDTO.Reservation = reservation;
-                ValidatePayment(paymentDTO);
-                return paymentDTO;
-            }
-            catch (ArgumentException ex)
-            {
-                throw new ArgumentException("Error al crear");
-            }
-        }
     }
 }

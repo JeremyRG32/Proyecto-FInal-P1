@@ -50,6 +50,7 @@
             listViewClient = new ListView();
             txtuserid = new TextBox();
             txtrealuser = new TextBox();
+            txtvehicleid = new TextBox();
             upperbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -281,6 +282,7 @@
             Cancel_Reservation.Text = "Cancelar";
             Cancel_Reservation.UseVisualStyleBackColor = false;
             Cancel_Reservation.Visible = false;
+            Cancel_Reservation.Click += Cancel_Reservation_Click;
             // 
             // Reserve_Vehicle
             // 
@@ -330,12 +332,21 @@
             txtrealuser.TabIndex = 63;
             txtrealuser.Visible = false;
             // 
+            // txtvehicleid
+            // 
+            txtvehicleid.Location = new Point(1362, 234);
+            txtvehicleid.Name = "txtvehicleid";
+            txtvehicleid.Size = new Size(196, 31);
+            txtvehicleid.TabIndex = 64;
+            txtvehicleid.Visible = false;
+            // 
             // clientmenu
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1568, 883);
+            Controls.Add(txtvehicleid);
             Controls.Add(txtrealuser);
             Controls.Add(txtuserid);
             Controls.Add(flowLayoutPanel1);
@@ -382,5 +393,6 @@
         private ListView listViewClient;
         private TextBox txtuserid;
         private TextBox txtrealuser;
+        private TextBox txtvehicleid;
     }
 }

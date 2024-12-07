@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using Vehicle_Management.Business;
+﻿using Vehicle_Management.Business;
 
 namespace Vehicle_Management.DataAccess.Models;
 
@@ -18,7 +14,7 @@ public partial class Vehicle
     private bool _available;
     private decimal _price;
 
-    public Vehicle(int vehicleId , string brand, string model, int manufactureyear, string fueltype, int passengercapacity, string licenceplate, bool available, ICollection<Reservation> reservations, decimal price)
+    public Vehicle(int vehicleId, string brand, string model, int manufactureyear, string fueltype, int passengercapacity, string licenceplate, bool available, ICollection<Reservation> reservations, decimal price)
     {
         _vehicleId = vehicleId;
         _brand = brand;
@@ -31,12 +27,12 @@ public partial class Vehicle
         _price = price;
     }
     public Vehicle() { }
-    public int VehicleId 
+    public int VehicleId
     {
         get => _vehicleId;
-        set => _vehicleId = value; 
+        set => _vehicleId = value;
     }
-    
+
     public string Brand
     {
         get => _brand;
@@ -116,7 +112,7 @@ public partial class Vehicle
     }
     public void ValidatePassengerCapacity(int passenger)
     {
-        if(passenger < 1 ||  passenger > 100)
+        if (passenger < 1 || passenger > 100)
         {
             throw new ArgumentOutOfRangeException();
         }
@@ -130,14 +126,14 @@ public partial class Vehicle
     }
     public List<Vehicle> GetAllVehicles()
     {
-        using(var context = new VehicleManagementDbContext())
+        using (var context = new VehicleManagementDbContext())
         {
-           return context.Vehicles.ToList();
+            return context.Vehicles.ToList();
         }
     }
     public void AddVehicle(VehicleDTO vehicleDTO)
     {
-       using (var context = new VehicleManagementDbContext())
+        using (var context = new VehicleManagementDbContext())
         {
             var vehicle = new Vehicle
             {
@@ -186,6 +182,14 @@ public partial class Vehicle
             }
         }
 
+    }
+    internal Vehicle GetVehicleToBuy(int vehicleid)
+    {
+        using (var context = new VehicleManagementDbContext())
+        {
+            var vehicle = context.Vehicles.SingleOrDefault(v => v.VehicleId == vehicleid);
+            return vehicle;
+        }
     }
     public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 }

@@ -35,7 +35,7 @@ namespace Vehicle_Management.Presentation
             Payments,
             Reservations
         }
-        private ViewType currentView;
+        private ViewType currentView = ViewType.Vehicles;
         private void upperbar_Paint(object sender, PaintEventArgs e)
         {
 
@@ -110,6 +110,8 @@ namespace Vehicle_Management.Presentation
         {
             if (entity == "payment")
             {
+                listViewClient.Items.Clear();
+                listViewClient.FullRowSelect = true;
                 listViewClient.View = View.Details;
                 listViewClient.Columns.Add("ID de Pago", 100);
                 listViewClient.Columns.Add("ID de Reserva", 150);
@@ -117,15 +119,19 @@ namespace Vehicle_Management.Presentation
                 listViewClient.Columns.Add("Fecha de Pago", 150);
                 listViewClient.Columns.Add("Metodo de pago", 150);
                 Payment payment = new Payment();
-                List <Payment> payments = new List <Payment>();
+                List<Payment> payments = new List<Payment>();
                 payments = payment.GetAllPayments();
+
                 foreach (var p in payments)
                 {
-                    var item = new ListViewItem(p.PaymentId.ToString());
-                    item.SubItems.Add(p.ReservationId.ToString());
-                    item.SubItems.Add(p.Amount.ToString());
-                    item.SubItems.Add(p.PaymentDate.ToString());
-                    item.SubItems.Add(p.PaymentMethod.ToString());
+
+                    var listViewItem = new ListViewItem(p.PaymentId.ToString());
+                    listViewItem.SubItems.Add(p.ReservationId.ToString());
+                    listViewItem.SubItems.Add(p.Amount.ToString());
+                    listViewItem.SubItems.Add(p.PaymentDate.ToString("yyyy-MM-dd"));
+                    listViewItem.SubItems.Add(p.PaymentMethod);
+
+                    listViewClient.Items.Add(listViewItem);
                 }
             }
             else if (entity == "vehicle")
@@ -232,7 +238,8 @@ namespace Vehicle_Management.Presentation
                 {
                     var selecteditem = listViewClient.SelectedItems[0];
                     var reservationtopay = (Reservation)selecteditem.Tag;
-                    Confirm_Payment confirm_paymentform = new Confirm_Payment(reservationtopay);
+                    txtvehicleid.Text = reservationtopay.VehicleId.ToString();
+                    Confirm_Payment confirm_paymentform = new Confirm_Payment(reservationtopay, Convert.ToInt32(txtvehicleid.Text));
                     confirm_paymentform.ShowDialog();
                 }
                 else
@@ -240,7 +247,7 @@ namespace Vehicle_Management.Presentation
                     { MessageBox.Show("No ha seleccionado nada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 }
             }
-            
+
         }
         private void clientmenu_Load(object sender, EventArgs e)
         {
@@ -271,9 +278,42 @@ namespace Vehicle_Management.Presentation
         {
             listViewClient.Clear();
             currentView = ViewType.Payments;
-            Reserve_Vehicle.Visible=false;
-            Cancel_Reservation.Visible=false;
+            Reserve_Vehicle.Visible = false;
+            Cancel_Reservation.Visible = false;
             EntityToViewList("payment");
+        }
+
+        private void Cancel_Reservation_Click(object sender, EventArgs e)
+        {
+            if (currentView == ViewType.Reservations)
+            {
+                try
+                {
+                    if (listViewClient.SelectedItems.Count > 0)
+                    {
+                        DialogResult result = MessageBox.Show("Está seguro que desea cancelar esta reserva", "Reservas", MessageBoxButtons.OKCancel);
+                        if (result == DialogResult.OK)
+                        {
+                            var selecteditem = listViewClient.SelectedItems[0];
+                            var reservation = (Reservation)selecteditem.Tag;
+                            int vehicleid = reservation.VehicleId;
+                            reservation.CancelReservation(reservation.ReservationId, vehicleid);
+                        }
+                        else
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No ha seleccionado nada", "Reservas", MessageBoxButtons.OK);
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                }
+            }
         }
     }
 }

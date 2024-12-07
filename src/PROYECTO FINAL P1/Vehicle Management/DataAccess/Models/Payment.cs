@@ -14,27 +14,41 @@ public partial class Payment
     public string PaymentMethod { get; set; } = null!;
     public virtual Reservation Reservation { get; set; } = null!;
 
-    internal List<Payment> GetAllPayments()
+    public List<Payment> GetAllPayments()
     {
         using (var context = new VehicleManagementDbContext())
         {
-            return context.Payments.Include(p => p.Reservation).ToList();
+            var payments = context.Payments.ToList();
+            return payments;
         }
     }
-    public void Addpayment(PaymentDTO paymentDTO)
+    public void Addpayment(Reservation reservation, string paymentmethod, int vehicleid)
+    {
+        using (var context = new VehicleManagementDbContext())       
+        {
+            var reservationWithVehicle = context.Reservations
+                                            .Include(r => r.Vehicle)
+                                            .FirstOrDefault(r => r.ReservationId == reservation.ReservationId);
+            var vehicle = context.Vehicles.SingleOrDefault(v => v.VehicleId == vehicleid);
+            var payment = new Payment
+            {
+                Reservation = reservationWithVehicle,
+                Amount = vehicle.Price,
+                PaymentDate = DateOnly.FromDateTime(DateTime.Now),
+                PaymentMethod = paymentmethod,
+                
+            };
+            context.Payments.Add(payment);
+            context.SaveChanges();
+        }
+    }
+
+    internal void DeletePayment(int paymentId)
     {
         using (var context = new VehicleManagementDbContext())
         {
-            var payment = new Payment
-            {
-                PaymentId = paymentDTO.PaymentId,
-                ReservationId = paymentDTO.ReservationId,
-                Amount = paymentDTO.Amount,
-                PaymentDate = paymentDTO.PaymentDate,
-                PaymentMethod = paymentDTO.PaymentMethod,
-                Reservation = paymentDTO.Reservation,
-            };
-            context.Payments.Add(payment);
+            var payment = context.Payments.SingleOrDefault(p => p.PaymentId == paymentId);
+            context.Payments.Remove(payment);
             context.SaveChanges();
         }
     }

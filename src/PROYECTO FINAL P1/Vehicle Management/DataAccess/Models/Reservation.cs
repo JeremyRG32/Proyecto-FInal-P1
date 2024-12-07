@@ -47,32 +47,51 @@ public partial class Reservation
         }
     }
 
-    //internal List<Reservation> GetAllUserReservation(int userid, int clientid)
-    //{
-    //    using (var context = new VehicleManagementDbContext())
-    //    {
-    //        var currentUser = context.Users.FirstOrDefault(u => u.UserId == userid);
-    //        var client = context.Clients.FirstOrDefault(c => c.UserId == userid);
-    //        //if (currentUser == null)
-    //        //{
-    //        //    throw new ArgumentException("Usuario no encontrado");
-    //        //}
-    //        var reservations = context.Reservations
-    //                                 .Where(r => r.ClientId == client.ClientId)
-    //                                 .Select(r => new Reservation
-    //                                 {
-    //                                     ReservationId = r.ReservationId,
-    //                                     ClientId = r.ClientId,
-    //                                     VehicleId = r.VehicleId,
-    //                                     StartDate = r.StartDate,
-    //                                     EndDate = r.EndDate,
-    //                                     State = r.State
-    //                                 });
+    internal void CancelReservation(int reservationId, int vehicleid)
+    {
+        using (var context = new VehicleManagementDbContext())
+        {
+            var vehicle = context.Vehicles.SingleOrDefault(v => v.VehicleId == vehicleid);
+            var reservation = context.Reservations.SingleOrDefault(r => r.ReservationId == reservationId);
+            if (reservation != null)
+            {
+                vehicle.Available = true;
+                reservation.State = "Cancelada";
+                context.SaveChanges();
+            }
+        }
+    }
 
-    //        return reservations.ToList() ;
-    //    }
-    //}
+    internal void CompleteReservation(int reservationId)
+    {
+        using (var context = new VehicleManagementDbContext())
+        {
+            var reservation = context.Reservations.SingleOrDefault(r => r.ReservationId == reservationId);
+            if (reservation != null)
+            {
+                reservation.State = "Completada";
+                context.SaveChanges();
+            }
+        }
+    }
 
+    internal void DeleteReservation(int reservationId)
+    {
+        using (var context = new VehicleManagementDbContext())
+        {
+            var reservation = context.Reservations.SingleOrDefault(r => r.ReservationId == reservationId);
+            var payment = context.Payments.FirstOrDefault(p => p.ReservationId == reservationId);
+            if (payment == null)
+            {
+                context.Reservations.Remove(reservation);
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("Hay un pago asociado a esta reserva elimine el pago primero para poder elimnarla");
+            }
+        }
+    }
     internal void IsVehicleAvailable(int vehicleidtopass)
     {
         using (var context = new VehicleManagementDbContext())

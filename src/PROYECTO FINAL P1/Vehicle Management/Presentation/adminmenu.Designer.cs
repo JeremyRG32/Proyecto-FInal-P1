@@ -275,10 +275,10 @@
             Delete_Vehicle.ForeColor = Color.White;
             Delete_Vehicle.Image = Properties.Resources.Delete;
             Delete_Vehicle.ImageAlign = ContentAlignment.MiddleLeft;
-            Delete_Vehicle.Location = new Point(3, 241);
+            Delete_Vehicle.Location = new Point(3, 173);
             Delete_Vehicle.Name = "Delete_Vehicle";
             Delete_Vehicle.Padding = new Padding(25, 0, 0, 0);
-            Delete_Vehicle.Size = new Size(253, 77);
+            Delete_Vehicle.Size = new Size(299, 77);
             Delete_Vehicle.TabIndex = 55;
             Delete_Vehicle.Text = "Eliminar ";
             Delete_Vehicle.UseVisualStyleBackColor = false;
@@ -293,10 +293,10 @@
             Update_Vehicle.ForeColor = Color.White;
             Update_Vehicle.Image = Properties.Resources.Update_outline;
             Update_Vehicle.ImageAlign = ContentAlignment.MiddleLeft;
-            Update_Vehicle.Location = new Point(3, 158);
+            Update_Vehicle.Location = new Point(3, 90);
             Update_Vehicle.Name = "Update_Vehicle";
             Update_Vehicle.Padding = new Padding(25, 0, 0, 0);
-            Update_Vehicle.Size = new Size(253, 77);
+            Update_Vehicle.Size = new Size(299, 77);
             Update_Vehicle.TabIndex = 56;
             Update_Vehicle.Text = "Editar";
             Update_Vehicle.UseVisualStyleBackColor = false;
@@ -311,10 +311,10 @@
             Create_Vehicle.ForeColor = Color.White;
             Create_Vehicle.Image = Properties.Resources.Create;
             Create_Vehicle.ImageAlign = ContentAlignment.MiddleLeft;
-            Create_Vehicle.Location = new Point(3, 75);
+            Create_Vehicle.Location = new Point(3, 7);
             Create_Vehicle.Name = "Create_Vehicle";
             Create_Vehicle.Padding = new Padding(25, 0, 0, 0);
-            Create_Vehicle.Size = new Size(253, 77);
+            Create_Vehicle.Size = new Size(299, 77);
             Create_Vehicle.TabIndex = 57;
             Create_Vehicle.Text = "Añadir";
             Create_Vehicle.UseVisualStyleBackColor = false;
@@ -327,9 +327,9 @@
             flowLayoutPanel1.Controls.Add(Update_Vehicle);
             flowLayoutPanel1.Controls.Add(Create_Vehicle);
             flowLayoutPanel1.FlowDirection = FlowDirection.BottomUp;
-            flowLayoutPanel1.Location = new Point(1271, 550);
+            flowLayoutPanel1.Location = new Point(1243, 625);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(255, 321);
+            flowLayoutPanel1.Size = new Size(302, 253);
             flowLayoutPanel1.TabIndex = 59;
             // 
             // adminmenu

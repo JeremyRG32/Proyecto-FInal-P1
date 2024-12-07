@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Vehicle_Management.Business;
-using Vehicle_Management.DataAccess.Models;
-using Vehicle_Management.Presentation;
+﻿using Vehicle_Management.DataAccess.Models;
 
 namespace Vehicle_Management.Presentation
 {
@@ -27,7 +16,7 @@ namespace Vehicle_Management.Presentation
             Payments,
             Reservations
         }
-        private ViewType currentView;
+        private ViewType currentView = ViewType.Vehicles;
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             var signup = new SignUp2();
@@ -49,6 +38,9 @@ namespace Vehicle_Management.Presentation
         private void button1_Click(object sender, EventArgs e)
         {
             adminselect.Text = "Gestion de Vehiculos";
+            Create_Vehicle.Text = "Agregar";
+            Update_Vehicle.Text = "Editar";
+            Delete_Vehicle.Text = "Eliminar";
             adminselect.Visible = true;
             listViewCars.Visible = true;
             currentView = ViewType.Vehicles;
@@ -64,17 +56,28 @@ namespace Vehicle_Management.Presentation
             currentView = ViewType.Reservations;
             EntityToViewList("reservation");
             adminselect.Text = "Gestion de Reservas";
-            
+            Create_Vehicle.Text = "Completar";
+            Update_Vehicle.Text = "Cancelar";
+            Delete_Vehicle.Text = "Eliminar";
             adminselect.Visible = true;
-            
+            Create_Vehicle.Visible = true;
+            Update_Vehicle.Visible = true;
+            Delete_Vehicle.Visible = true;
+
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            listViewCars.Clear();
             currentView = ViewType.Payments;
             adminselect.Text = "Gestion de Pagos";
             adminselect.Visible = true;
-            listViewCars.Clear();
+            Create_Vehicle.Visible = false;
+            Update_Vehicle.Visible = false;
+            Delete_Vehicle.Visible = true;
+            EntityToViewList("payment");
+            listViewCars.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -88,6 +91,7 @@ namespace Vehicle_Management.Presentation
             EntityToViewList("client");
             Update_Vehicle.Visible = false;
             Create_Vehicle.Visible = false;
+            Delete_Vehicle.Visible = false;
 
         }
 
@@ -210,7 +214,7 @@ namespace Vehicle_Management.Presentation
                 {
                     var item = new ListViewItem(r.ReservationId.ToString());
                     item.SubItems.Add(r.ClientId.ToString());
-                    item.SubItems.Add(r.VehicleId.ToString());                  
+                    item.SubItems.Add(r.VehicleId.ToString());
                     item.SubItems.Add(r.StartDate.ToString());
                     item.SubItems.Add(r.EndDate.ToString());
                     item.SubItems.Add(r.State.ToString());
@@ -224,12 +228,33 @@ namespace Vehicle_Management.Presentation
             }
             else if (entity == "payment")
             {
+                listViewCars.Items.Clear();
+                listViewCars.FullRowSelect = true;
                 listViewCars.View = View.Details;
                 listViewCars.Columns.Add("ID de Pago", 100);
                 listViewCars.Columns.Add("ID de Reserva", 150);
                 listViewCars.Columns.Add("Cantidad", 100);
                 listViewCars.Columns.Add("Fecha de Pago", 150);
                 listViewCars.Columns.Add("Metodo de pago", 150);
+                Payment payment = new Payment();
+                List<Payment> payments = new List<Payment>();
+                payments = payment.GetAllPayments();
+
+                foreach (var p in payments)
+                {
+
+                    var listViewItem = new ListViewItem(p.PaymentId.ToString());
+                    listViewItem.SubItems.Add(p.ReservationId.ToString());
+                    listViewItem.SubItems.Add(p.Amount.ToString());
+                    listViewItem.SubItems.Add(p.PaymentDate.ToString("yyyy-MM-dd"));
+                    listViewItem.SubItems.Add(p.PaymentMethod);
+                    listViewItem.Tag = p;
+                    if (p != null)
+                    {
+                        listViewItem.Tag = p;
+                    }
+                    listViewCars.Items.Add(listViewItem);
+                }
             }
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -279,13 +304,93 @@ namespace Vehicle_Management.Presentation
                 }
 
             }
+            else if (currentView == ViewType.Reservations)
+            {
+                try
+                {
+                    if (listViewCars.SelectedItems.Count > 0)
+                    {
+                        DialogResult result = MessageBox.Show("Está seguro que desea elimanarlo", "Reservas", MessageBoxButtons.OKCancel);
+                        if (result == DialogResult.OK)
+                        {
+                            var selecteditem = listViewCars.SelectedItems[0];
+                            var reservation = (Reservation)selecteditem.Tag;
+                            reservation.DeleteReservation(reservation.ReservationId);
+                        }
+                        else
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No ha seleccionado nada", "Reservas", MessageBoxButtons.OK);
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                }
+            }
+            else if (currentView == ViewType.Payments)
+            {
+                try
+                {
+                    if (listViewCars.SelectedItems.Count > 0)
+                    {
+                        DialogResult result = MessageBox.Show("Está seguro que desea elimanarlo", "Reservas", MessageBoxButtons.OKCancel);
+                        if (result == DialogResult.OK)
+                        {
+                            var selecteditem = listViewCars.SelectedItems[0];
+                            var payment = (Payment)selecteditem.Tag;
+                            payment.DeletePayment(payment.PaymentId);
+                        }
+                        else
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No ha seleccionado nada", "Reservas", MessageBoxButtons.OK);
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                }
+            }
         }
 
         private void Create_Vehicle_Click(object sender, EventArgs e)
         {
-            CreateVehicle createVehicle = new CreateVehicle();
-            createVehicle.ShowDialog();
-            EntityToViewList("vehicle");
+            if (currentView == ViewType.Vehicles)
+            {
+                CreateVehicle createVehicle = new CreateVehicle();
+                createVehicle.ShowDialog();
+                EntityToViewList("vehicle");
+            }
+            else if (currentView == ViewType.Reservations)
+            {
+                if (listViewCars.SelectedItems.Count > 0)
+                {
+                    DialogResult result = MessageBox.Show("Está seguro que quiere maracar esta reserva como completada", "Reserva", MessageBoxButtons.OKCancel);
+                    if (result == DialogResult.OK)
+                    {
+                        var selectedItem = listViewCars.SelectedItems[0];
+                        var reservation = (Reservation)selectedItem.Tag;
+                        reservation.CompleteReservation(reservation.ReservationId);
+                    }
+                    else if (result == DialogResult.Cancel)
+                    {
+                        this.DialogResult = DialogResult.Cancel;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No ha seleccionado nada", "Reserva", MessageBoxButtons.OK);
+                }
+            }
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -307,25 +412,57 @@ namespace Vehicle_Management.Presentation
 
                 case ViewType.Payments:
                     EntityToViewList("payment");
+
                     break;
                 case ViewType.Reservations:
                     EntityToViewList("reservation");
+
                     break;
             }
         }
         private void Update_Vehicle_Click(object sender, EventArgs e)
         {
-            if (listViewCars.SelectedItems.Count > 0)
+            if (currentView == ViewType.Vehicles)
             {
-                var selectedItem = listViewCars.SelectedItems[0];
-                var vehicletoedit = (Vehicle)selectedItem.Tag;
-                EditVehicle editform = new EditVehicle(vehicletoedit);
-                editform.ShowDialog();
+                if (listViewCars.SelectedItems.Count > 0)
+                {
+                    var selectedItem = listViewCars.SelectedItems[0];
+                    var vehicletoedit = (Vehicle)selectedItem.Tag;
+                    EditVehicle editform = new EditVehicle(vehicletoedit);
+                    editform.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("No ha Seleccionado Nada", "Error", MessageBoxButtons.OK);
+                }
             }
-            else
+            else if (currentView == ViewType.Reservations)
             {
-                MessageBox.Show("No ha Seleccionado Nada","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+                if (listViewCars.SelectedItems.Count > 0)
+                {
+                    DialogResult result = MessageBox.Show("Está Seguro que quiere cancelar esta reserva", "Reserva", MessageBoxButtons.OKCancel);
+                    if (result == DialogResult.OK)
+                    {
+                        var selecteditem = listViewCars.SelectedItems[0];
+                        var reservation = (Reservation)selecteditem.Tag;
+                        var vehicleid = reservation.VehicleId;
+                        reservation.CancelReservation(reservation.ReservationId, vehicleid);
+                    }
+                    else if (result == DialogResult.Cancel)
+                    {
+                        this.DialogResult = DialogResult.Cancel;
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("No ha Seleccionado Nada", "Error", MessageBoxButtons.OK);
+                }
+
+
             }
+
         }
 
         private void sidebar_Paint(object sender, PaintEventArgs e)

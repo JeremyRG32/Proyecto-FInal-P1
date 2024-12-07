@@ -31,42 +31,28 @@
             label10 = new Label();
             button1 = new Button();
             Confirm_Creation = new Button();
-            panel6 = new Panel();
-            txtprice = new TextBox();
-            label9 = new Label();
             panel3 = new Panel();
             panel1 = new Panel();
             label1 = new Label();
             label8 = new Label();
-            panel10 = new Panel();
-            panel9 = new Panel();
-            panel8 = new Panel();
-            panel7 = new Panel();
             panel5 = new Panel();
-            panel4 = new Panel();
-            txtplate = new TextBox();
-            txtpassenger = new TextBox();
-            txtfuel = new TextBox();
-            txtyear = new TextBox();
-            txtselecvehicle = new TextBox();
-            txtmodel = new TextBox();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
+            txtamount = new TextBox();
             boxpaymethod = new ComboBox();
+            txtvehicleid = new TextBox();
+            label2 = new Label();
+            panel2 = new Panel();
+            txtvehiclename = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(166, 137);
+            label10.Location = new Point(461, 112);
             label10.Name = "label10";
-            label10.Size = new Size(60, 25);
+            label10.Size = new Size(66, 25);
             label10.TabIndex = 149;
-            label10.Text = "Marca";
+            label10.Text = "Monto";
             // 
             // button1
             // 
@@ -98,33 +84,6 @@
             Confirm_Creation.UseVisualStyleBackColor = false;
             Confirm_Creation.Click += Confirm_Creation_Click;
             // 
-            // panel6
-            // 
-            panel6.BackColor = Color.Black;
-            panel6.Location = new Point(553, 459);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(150, 1);
-            panel6.TabIndex = 146;
-            // 
-            // txtprice
-            // 
-            txtprice.BorderStyle = BorderStyle.None;
-            txtprice.Location = new Point(553, 436);
-            txtprice.Name = "txtprice";
-            txtprice.ReadOnly = true;
-            txtprice.Size = new Size(150, 24);
-            txtprice.TabIndex = 145;
-            txtprice.TextAlign = HorizontalAlignment.Center;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(582, 389);
-            label9.Name = "label9";
-            label9.Size = new Size(60, 25);
-            label9.TabIndex = 144;
-            label9.Text = "Precio";
-            // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(35, 50, 90);
@@ -148,7 +107,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 14F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(367, 24);
+            label1.Location = new Point(394, 25);
             label1.Name = "label1";
             label1.Size = new Size(209, 38);
             label1.TabIndex = 1;
@@ -157,174 +116,79 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(724, 137);
+            label8.Location = new Point(408, 372);
             label8.Name = "label8";
             label8.Size = new Size(146, 25);
             label8.TabIndex = 141;
             label8.Text = "Metodo de Pago";
             // 
-            // panel10
-            // 
-            panel10.BackColor = Color.Black;
-            panel10.Location = new Point(285, 459);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(150, 1);
-            panel10.TabIndex = 139;
-            // 
-            // panel9
-            // 
-            panel9.BackColor = Color.Black;
-            panel9.Location = new Point(673, 341);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(150, 1);
-            panel9.TabIndex = 138;
-            // 
-            // panel8
-            // 
-            panel8.BackColor = Color.Black;
-            panel8.Location = new Point(416, 341);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(150, 1);
-            panel8.TabIndex = 137;
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.Black;
-            panel7.Location = new Point(153, 341);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(150, 1);
-            panel7.TabIndex = 136;
-            // 
             // panel5
             // 
             panel5.BackColor = Color.Black;
-            panel5.Location = new Point(109, 210);
+            panel5.Location = new Point(391, 185);
             panel5.Name = "panel5";
             panel5.Size = new Size(200, 1);
             panel5.TabIndex = 135;
             // 
-            // panel4
+            // txtamount
             // 
-            panel4.BackColor = Color.Black;
-            panel4.Location = new Point(416, 210);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(150, 1);
-            panel4.TabIndex = 134;
-            // 
-            // txtplate
-            // 
-            txtplate.BorderStyle = BorderStyle.None;
-            txtplate.Location = new Point(285, 436);
-            txtplate.Name = "txtplate";
-            txtplate.ReadOnly = true;
-            txtplate.Size = new Size(150, 24);
-            txtplate.TabIndex = 133;
-            txtplate.TextAlign = HorizontalAlignment.Center;
-            // 
-            // txtpassenger
-            // 
-            txtpassenger.BorderStyle = BorderStyle.None;
-            txtpassenger.Location = new Point(676, 318);
-            txtpassenger.Name = "txtpassenger";
-            txtpassenger.ReadOnly = true;
-            txtpassenger.Size = new Size(150, 24);
-            txtpassenger.TabIndex = 132;
-            txtpassenger.TextAlign = HorizontalAlignment.Center;
-            // 
-            // txtfuel
-            // 
-            txtfuel.BorderStyle = BorderStyle.None;
-            txtfuel.Location = new Point(419, 318);
-            txtfuel.Name = "txtfuel";
-            txtfuel.ReadOnly = true;
-            txtfuel.Size = new Size(150, 24);
-            txtfuel.TabIndex = 131;
-            txtfuel.TextAlign = HorizontalAlignment.Center;
-            // 
-            // txtyear
-            // 
-            txtyear.BorderStyle = BorderStyle.None;
-            txtyear.Location = new Point(156, 318);
-            txtyear.Name = "txtyear";
-            txtyear.ReadOnly = true;
-            txtyear.Size = new Size(150, 24);
-            txtyear.TabIndex = 130;
-            txtyear.TextAlign = HorizontalAlignment.Center;
-            // 
-            // txtselecvehicle
-            // 
-            txtselecvehicle.BorderStyle = BorderStyle.None;
-            txtselecvehicle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtselecvehicle.Location = new Point(106, 187);
-            txtselecvehicle.Name = "txtselecvehicle";
-            txtselecvehicle.ReadOnly = true;
-            txtselecvehicle.Size = new Size(197, 24);
-            txtselecvehicle.TabIndex = 129;
-            txtselecvehicle.TextAlign = HorizontalAlignment.Center;
-            // 
-            // txtmodel
-            // 
-            txtmodel.BorderStyle = BorderStyle.None;
-            txtmodel.Location = new Point(416, 184);
-            txtmodel.Name = "txtmodel";
-            txtmodel.ReadOnly = true;
-            txtmodel.Size = new Size(150, 24);
-            txtmodel.TabIndex = 128;
-            txtmodel.TextAlign = HorizontalAlignment.Center;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(314, 389);
-            label7.Name = "label7";
-            label7.Size = new Size(84, 25);
-            label7.TabIndex = 127;
-            label7.Text = "Matricula";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(699, 268);
-            label6.Name = "label6";
-            label6.Size = new Size(95, 25);
-            label6.TabIndex = 126;
-            label6.Text = "Capacidad";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(432, 268);
-            label5.Name = "label5";
-            label5.Size = new Size(113, 25);
-            label5.TabIndex = 125;
-            label5.Text = "Combustible";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(204, 268);
-            label4.Name = "label4";
-            label4.Size = new Size(45, 25);
-            label4.TabIndex = 124;
-            label4.Text = "Año";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(455, 137);
-            label3.Name = "label3";
-            label3.Size = new Size(74, 25);
-            label3.TabIndex = 123;
-            label3.Text = "Modelo";
+            txtamount.BorderStyle = BorderStyle.None;
+            txtamount.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtamount.Location = new Point(388, 162);
+            txtamount.Name = "txtamount";
+            txtamount.ReadOnly = true;
+            txtamount.Size = new Size(197, 24);
+            txtamount.TabIndex = 129;
+            txtamount.TextAlign = HorizontalAlignment.Center;
             // 
             // boxpaymethod
             // 
             boxpaymethod.FormattingEnabled = true;
             boxpaymethod.Items.AddRange(new object[] { "Efectivo", "Tarjeta de Credito", "Transferencia" });
-            boxpaymethod.Location = new Point(708, 181);
+            boxpaymethod.Location = new Point(392, 416);
             boxpaymethod.Name = "boxpaymethod";
             boxpaymethod.Size = new Size(182, 33);
             boxpaymethod.TabIndex = 150;
+            // 
+            // txtvehicleid
+            // 
+            txtvehicleid.BorderStyle = BorderStyle.None;
+            txtvehicleid.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtvehicleid.Location = new Point(15, 88);
+            txtvehicleid.Name = "txtvehicleid";
+            txtvehicleid.ReadOnly = true;
+            txtvehicleid.Size = new Size(197, 24);
+            txtvehicleid.TabIndex = 151;
+            txtvehicleid.TextAlign = HorizontalAlignment.Center;
+            txtvehicleid.Visible = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(408, 232);
+            label2.Name = "label2";
+            label2.Size = new Size(177, 25);
+            label2.TabIndex = 154;
+            label2.Text = "Nombre del vehiculo";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Black;
+            panel2.Location = new Point(391, 302);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(200, 1);
+            panel2.TabIndex = 153;
+            // 
+            // txtvehiclename
+            // 
+            txtvehiclename.BorderStyle = BorderStyle.None;
+            txtvehiclename.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtvehiclename.Location = new Point(388, 279);
+            txtvehiclename.Name = "txtvehiclename";
+            txtvehiclename.ReadOnly = true;
+            txtvehiclename.Size = new Size(197, 24);
+            txtvehiclename.TabIndex = 152;
+            txtvehiclename.TextAlign = HorizontalAlignment.Center;
             // 
             // Confirm_Payment
             // 
@@ -332,37 +196,24 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(980, 624);
+            Controls.Add(label2);
+            Controls.Add(panel2);
+            Controls.Add(txtvehiclename);
+            Controls.Add(txtvehicleid);
             Controls.Add(boxpaymethod);
             Controls.Add(label10);
             Controls.Add(button1);
             Controls.Add(Confirm_Creation);
-            Controls.Add(panel6);
-            Controls.Add(txtprice);
-            Controls.Add(label9);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(label8);
-            Controls.Add(panel10);
-            Controls.Add(panel9);
-            Controls.Add(panel8);
-            Controls.Add(panel7);
             Controls.Add(panel5);
-            Controls.Add(panel4);
-            Controls.Add(txtplate);
-            Controls.Add(txtpassenger);
-            Controls.Add(txtfuel);
-            Controls.Add(txtyear);
-            Controls.Add(txtselecvehicle);
-            Controls.Add(txtmodel);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
+            Controls.Add(txtamount);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Confirm_Payment";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Confirm_Payment";
+            Load += Confirm_Payment_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -374,30 +225,16 @@
         private Label label10;
         private Button button1;
         private Button Confirm_Creation;
-        private Panel panel6;
-        private TextBox txtprice;
-        private Label label9;
         private Panel panel3;
         private Panel panel1;
         private Label label1;
         private Label label8;
-        private Panel panel10;
-        private Panel panel9;
-        private Panel panel8;
-        private Panel panel7;
         private Panel panel5;
-        private Panel panel4;
-        private TextBox txtplate;
-        private TextBox txtpassenger;
-        private TextBox txtfuel;
-        private TextBox txtyear;
-        private TextBox txtselecvehicle;
-        private TextBox txtmodel;
-        private Label label7;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label3;
+        private TextBox txtamount;
         private ComboBox boxpaymethod;
+        private TextBox txtvehicleid;
+        private Label label2;
+        private Panel panel2;
+        private TextBox txtvehiclename;
     }
 }
