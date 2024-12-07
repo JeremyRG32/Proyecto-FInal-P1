@@ -78,9 +78,9 @@
             label1.Location = new Point(65, 0);
             label1.Name = "label1";
             label1.Padding = new Padding(0, 15, 0, 0);
-            label1.Size = new Size(143, 45);
+            label1.Size = new Size(151, 45);
             label1.TabIndex = 50;
-            label1.Text = "Back to Login";
+            label1.Text = "Volver al login";
             // 
             // button1
             // 
@@ -194,12 +194,12 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(1323, -5);
+            label2.Location = new Point(1257, 3);
             label2.Name = "label2";
             label2.Padding = new Padding(0, 15, 0, 0);
-            label2.Size = new Size(112, 45);
+            label2.Size = new Size(178, 45);
             label2.TabIndex = 52;
-            label2.Text = "Close App";
+            label2.Text = "Cerrar Aplicacion";
             // 
             // adminselect
             // 

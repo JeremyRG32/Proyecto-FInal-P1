@@ -147,7 +147,8 @@ public partial class Vehicle
                 ManufactureYear = vehicleDTO.ManufactureYear,
                 FuelType = vehicleDTO.FuelType,
                 PassengerCapacity = vehicleDTO.PassengerCapacity,
-                Available = vehicleDTO.Available
+                Available = vehicleDTO.Available,
+                Price = vehicleDTO.Price,
             };
             context.Vehicles.Add(vehicle);
             context.SaveChanges();
@@ -176,6 +177,7 @@ public partial class Vehicle
                 existingVehicle.PassengerCapacity = vehicleDTO.PassengerCapacity;
                 existingVehicle.LicensePlate = vehicleDTO.LicensePlate;
                 existingVehicle.Available = vehicleDTO.Available;
+                existingVehicle.Price = vehicleDTO.Price;
                 context.SaveChanges();
             }
             else

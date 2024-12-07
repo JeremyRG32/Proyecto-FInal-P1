@@ -48,11 +48,16 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            panel11 = new Panel();
             panel1 = new Panel();
             label1 = new Label();
-            panel2 = new Panel();
-            panel3 = new Panel();
+            panel6 = new Panel();
+            txtprice = new TextBox();
+            label9 = new Label();
+            button1 = new Button();
+            Confirm_Creation = new Button();
+            label10 = new Label();
+            txtvehicleid = new TextBox();
+            txtclientid = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -67,6 +72,7 @@
             // 
             // chkavailable
             // 
+            chkavailable.AutoCheck = false;
             chkavailable.AutoSize = true;
             chkavailable.Location = new Point(751, 186);
             chkavailable.Name = "chkavailable";
@@ -77,7 +83,7 @@
             // panel10
             // 
             panel10.BackColor = Color.Black;
-            panel10.Location = new Point(408, 461);
+            panel10.Location = new Point(277, 455);
             panel10.Name = "panel10";
             panel10.Size = new Size(150, 1);
             panel10.TabIndex = 107;
@@ -125,42 +131,51 @@
             // txtplate
             // 
             txtplate.BorderStyle = BorderStyle.None;
-            txtplate.Location = new Point(408, 438);
+            txtplate.Location = new Point(277, 432);
             txtplate.Name = "txtplate";
+            txtplate.ReadOnly = true;
             txtplate.Size = new Size(150, 24);
             txtplate.TabIndex = 101;
+            txtplate.TextAlign = HorizontalAlignment.Center;
             // 
             // txtpassenger
             // 
             txtpassenger.BorderStyle = BorderStyle.None;
             txtpassenger.Location = new Point(668, 314);
             txtpassenger.Name = "txtpassenger";
+            txtpassenger.ReadOnly = true;
             txtpassenger.Size = new Size(150, 24);
             txtpassenger.TabIndex = 100;
+            txtpassenger.TextAlign = HorizontalAlignment.Center;
             // 
             // txtfuel
             // 
             txtfuel.BorderStyle = BorderStyle.None;
             txtfuel.Location = new Point(411, 314);
             txtfuel.Name = "txtfuel";
+            txtfuel.ReadOnly = true;
             txtfuel.Size = new Size(150, 24);
             txtfuel.TabIndex = 99;
+            txtfuel.TextAlign = HorizontalAlignment.Center;
             // 
             // txtyear
             // 
             txtyear.BorderStyle = BorderStyle.None;
             txtyear.Location = new Point(148, 314);
             txtyear.Name = "txtyear";
+            txtyear.ReadOnly = true;
             txtyear.Size = new Size(150, 24);
             txtyear.TabIndex = 98;
+            txtyear.TextAlign = HorizontalAlignment.Center;
             // 
             // txtselecvehicle
             // 
             txtselecvehicle.BorderStyle = BorderStyle.None;
-            txtselecvehicle.Font = new Font("Segoe UI", 14F);
-            txtselecvehicle.Location = new Point(101, 166);
+            txtselecvehicle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtselecvehicle.Location = new Point(98, 183);
             txtselecvehicle.Name = "txtselecvehicle";
-            txtselecvehicle.Size = new Size(197, 38);
+            txtselecvehicle.ReadOnly = true;
+            txtselecvehicle.Size = new Size(197, 24);
             txtselecvehicle.TabIndex = 97;
             txtselecvehicle.TextAlign = HorizontalAlignment.Center;
             // 
@@ -169,14 +184,16 @@
             txtmodel.BorderStyle = BorderStyle.None;
             txtmodel.Location = new Point(408, 180);
             txtmodel.Name = "txtmodel";
+            txtmodel.ReadOnly = true;
             txtmodel.Size = new Size(150, 24);
             txtmodel.TabIndex = 96;
+            txtmodel.TextAlign = HorizontalAlignment.Center;
             txtmodel.TextChanged += txtmodel_TextChanged;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(437, 391);
+            label7.Location = new Point(306, 385);
             label7.Name = "label7";
             label7.Size = new Size(84, 25);
             label7.TabIndex = 95;
@@ -222,27 +239,21 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14F);
-            label2.Location = new Point(321, 57);
+            label2.Location = new Point(332, 74);
             label2.Name = "label2";
             label2.Size = new Size(315, 38);
             label2.TabIndex = 90;
             label2.Text = "Vehiculo que selecciono";
             // 
-            // panel11
-            // 
-            panel11.BackColor = Color.FromArgb(35, 50, 90);
-            panel11.Location = new Point(896, -14);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(58, 677);
-            panel11.TabIndex = 110;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(35, 50, 90);
+            panel1.Controls.Add(txtclientid);
             panel1.Controls.Add(label1);
+            panel1.Controls.Add(txtvehicleid);
             panel1.Location = new Point(-43, -18);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1054, 72);
+            panel1.Size = new Size(1054, 98);
             panel1.TabIndex = 111;
             // 
             // label1
@@ -258,21 +269,96 @@
             label1.Text = "Confirmar Reserva";
             label1.Click += label1_Click;
             // 
-            // panel2
+            // panel6
             // 
-            panel2.BackColor = Color.FromArgb(35, 50, 90);
-            panel2.Location = new Point(-54, 584);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1054, 185);
-            panel2.TabIndex = 112;
+            panel6.BackColor = Color.Black;
+            panel6.Location = new Point(545, 455);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(150, 1);
+            panel6.TabIndex = 116;
             // 
-            // panel3
+            // txtprice
             // 
-            panel3.BackColor = Color.FromArgb(35, 50, 90);
-            panel3.Location = new Point(-43, -18);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(93, 677);
-            panel3.TabIndex = 113;
+            txtprice.BorderStyle = BorderStyle.None;
+            txtprice.Location = new Point(545, 432);
+            txtprice.Name = "txtprice";
+            txtprice.ReadOnly = true;
+            txtprice.Size = new Size(150, 24);
+            txtprice.TabIndex = 115;
+            txtprice.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(574, 385);
+            label9.Name = "label9";
+            label9.Size = new Size(60, 25);
+            label9.TabIndex = 114;
+            label9.Text = "Precio";
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(35, 50, 90);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 13F);
+            button1.ForeColor = Color.White;
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(634, 504);
+            button1.Name = "button1";
+            button1.Size = new Size(215, 64);
+            button1.TabIndex = 118;
+            button1.Text = "Cancelar";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
+            // Confirm_Creation
+            // 
+            Confirm_Creation.BackColor = Color.FromArgb(35, 50, 90);
+            Confirm_Creation.FlatStyle = FlatStyle.Flat;
+            Confirm_Creation.Font = new Font("Segoe UI", 13F);
+            Confirm_Creation.ForeColor = Color.White;
+            Confirm_Creation.ImageAlign = ContentAlignment.MiddleLeft;
+            Confirm_Creation.Location = new Point(86, 504);
+            Confirm_Creation.Name = "Confirm_Creation";
+            Confirm_Creation.Size = new Size(215, 64);
+            Confirm_Creation.TabIndex = 117;
+            Confirm_Creation.Text = "Confirmar";
+            Confirm_Creation.UseVisualStyleBackColor = false;
+            Confirm_Creation.Click += Confirm_Creation_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(158, 133);
+            label10.Name = "label10";
+            label10.Size = new Size(60, 25);
+            label10.TabIndex = 119;
+            label10.Text = "Marca";
+            // 
+            // txtvehicleid
+            // 
+            txtvehicleid.BorderStyle = BorderStyle.None;
+            txtvehicleid.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtvehicleid.Location = new Point(43, 56);
+            txtvehicleid.Name = "txtvehicleid";
+            txtvehicleid.ReadOnly = true;
+            txtvehicleid.Size = new Size(197, 24);
+            txtvehicleid.TabIndex = 120;
+            txtvehicleid.TextAlign = HorizontalAlignment.Center;
+            txtvehicleid.Visible = false;
+            // 
+            // txtclientid
+            // 
+            txtclientid.BorderStyle = BorderStyle.None;
+            txtclientid.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtclientid.Location = new Point(794, 56);
+            txtclientid.Name = "txtclientid";
+            txtclientid.ReadOnly = true;
+            txtclientid.Size = new Size(197, 24);
+            txtclientid.TabIndex = 121;
+            txtclientid.TextAlign = HorizontalAlignment.Center;
+            txtclientid.Visible = false;
+            txtclientid.TextChanged += txtclientid_TextChanged;
             // 
             // CreateReservation
             // 
@@ -280,10 +366,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(947, 640);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
+            Controls.Add(label10);
+            Controls.Add(button1);
+            Controls.Add(Confirm_Creation);
+            Controls.Add(panel6);
+            Controls.Add(txtprice);
+            Controls.Add(label9);
             Controls.Add(panel1);
-            Controls.Add(panel11);
             Controls.Add(label8);
             Controls.Add(chkavailable);
             Controls.Add(panel10);
@@ -337,10 +426,15 @@
         private Label label4;
         private Label label3;
         private Label label2;
-        private Panel panel11;
         private Panel panel1;
-        private Panel panel2;
-        private Panel panel3;
         private Label label1;
+        private Panel panel6;
+        private TextBox txtprice;
+        private Label label9;
+        private Button button1;
+        private Button Confirm_Creation;
+        private Label label10;
+        private TextBox txtvehicleid;
+        private TextBox txtclientid;
     }
 }

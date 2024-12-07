@@ -54,7 +54,7 @@ public partial class Client
     }
     public void AddClient(ClientDTO clientDTO)
     {
-        using(var context = new VehicleManagementDbContext())
+        using (var context = new VehicleManagementDbContext())
         {
             Client client = new Client
             {
@@ -90,6 +90,13 @@ public partial class Client
             var client = context.Clients.SingleOrDefault(c => c.UserId == userId);
             var clientid = client.ClientId;
             return clientid;
+        }
+    }
+    public Client GetClientByClientID(int clientid)
+    {
+        using (var context = new VehicleManagementDbContext())
+        {
+            return context.Clients.SingleOrDefault(c => c.ClientId == clientid);
         }
     }
 }

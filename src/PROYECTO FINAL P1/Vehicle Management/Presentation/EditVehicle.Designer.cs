@@ -382,6 +382,7 @@
             Name = "EditVehicle";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "EditVehicle";
+            Load += EditVehicle_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);

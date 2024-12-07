@@ -16,6 +16,7 @@ namespace Vehicle_Management.Presentation
     {
         private string username;
         private int clientid;
+        private int userid;
         public clientmenu(string username)
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace Vehicle_Management.Presentation
             Client client = new Client();
             var clientid = client.GetClientIdByUserId(userid);
             txtuserid.Text = clientid.ToString();
+            txtrealuser.Text = userid.ToString();
         }
         private enum ViewType
         {
@@ -98,13 +100,33 @@ namespace Vehicle_Management.Presentation
                 case ViewType.Payments:
                     EntityToViewList("payment");
                     break;
+
+                case ViewType.Reservations:
+                    EntityToViewList("reservation");
+                    break;
             }
         }
         private void EntityToViewList(string entity)
         {
-            if (entity == "profile")
+            if (entity == "payment")
             {
-
+                listViewClient.View = View.Details;
+                listViewClient.Columns.Add("ID de Pago", 100);
+                listViewClient.Columns.Add("ID de Reserva", 150);
+                listViewClient.Columns.Add("Cantidad", 100);
+                listViewClient.Columns.Add("Fecha de Pago", 150);
+                listViewClient.Columns.Add("Metodo de pago", 150);
+                Payment payment = new Payment();
+                List <Payment> payments = new List <Payment>();
+                payments = payment.GetAllPayments();
+                foreach (var p in payments)
+                {
+                    var item = new ListViewItem(p.PaymentId.ToString());
+                    item.SubItems.Add(p.ReservationId.ToString());
+                    item.SubItems.Add(p.Amount.ToString());
+                    item.SubItems.Add(p.PaymentDate.ToString());
+                    item.SubItems.Add(p.PaymentMethod.ToString());
+                }
             }
             else if (entity == "vehicle")
             {
@@ -114,6 +136,7 @@ namespace Vehicle_Management.Presentation
                 listViewClient.Columns.Add("ID", 100);
                 listViewClient.Columns.Add("Marca", 150);
                 listViewClient.Columns.Add("Modelo", 150);
+                listViewClient.Columns.Add("Price", 150);
                 listViewClient.Columns.Add("Año", 100);
                 listViewClient.Columns.Add("Combustible", 100);
                 listViewClient.Columns.Add("Capacidad", 100);
@@ -128,6 +151,7 @@ namespace Vehicle_Management.Presentation
                     var item = new ListViewItem(v.VehicleId.ToString());
                     item.SubItems.Add(v.Brand);
                     item.SubItems.Add(v.Model);
+                    item.SubItems.Add(v.Price.ToString());
                     item.SubItems.Add(v.ManufactureYear.ToString());
                     item.SubItems.Add(v.FuelType);
                     item.SubItems.Add(v.PassengerCapacity.ToString());
@@ -141,28 +165,82 @@ namespace Vehicle_Management.Presentation
                     listViewClient.Items.Add(item);
                 }
             }
+            else if (entity == "reservation")
+            {
+                listViewClient.Clear();
+                listViewClient.FullRowSelect = true;
+                listViewClient.View = View.Details;
+                listViewClient.Columns.Add("ID Reserva", 100);
+                listViewClient.Columns.Add("ID Cliente", 150);
+                listViewClient.Columns.Add("ID Vehiculo", 150);
+                listViewClient.Columns.Add("Fecha de inicio", 150);
+                listViewClient.Columns.Add("Fecha de fin", 150);
+                listViewClient.Columns.Add("Estado", 150);
+                Reservation reservation = new Reservation();
+                List<Reservation> reservations = new List<Reservation>();
+                reservations = reservation.GetAllReservations();
+
+                foreach (var r in reservations)
+                {
+                    var item = new ListViewItem(r.ReservationId.ToString());
+                    item.SubItems.Add(r.ClientId.ToString());
+                    item.SubItems.Add(r.VehicleId.ToString());
+                    item.SubItems.Add(r.StartDate.ToString());
+                    item.SubItems.Add(r.EndDate.ToString());
+                    item.SubItems.Add(r.State.ToString());
+                    item.Tag = r;
+                    if (r != null)
+                    {
+                        item.Tag = r;
+                    }
+                    listViewClient.Items.Add(item);
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listViewClient.Visible = true;
-            Reserve_Vehicle.Visible = true;
             currentView = ViewType.Vehicles;
             EntityToViewList("vehicle");
+            Reserve_Vehicle.Text = "Reservar";
+            listViewClient.Visible = true;
+            Reserve_Vehicle.Visible = true;
+            Cancel_Reservation.Visible = false;
+
 
         }
 
         private void Reserve_Vehicle_Click(object sender, EventArgs e)
         {
-            var selecteditem = listViewClient.SelectedItems[0];
-            if (selecteditem == null)
-            { MessageBox.Show("No ha seleccionado nada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            else
+            if (currentView == ViewType.Vehicles)
             {
-                var vehicletoreserve = (Vehicle)selecteditem.Tag;
-                CreateReservation reserveform = new CreateReservation(vehicletoreserve, this.clientid);
-                reserveform.ShowDialog();
+                if (listViewClient.SelectedItems.Count > 0)
+                {
+                    var selecteditem = listViewClient.SelectedItems[0];
+                    var vehicletoreserve = (Vehicle)selecteditem.Tag;
+                    CreateReservation reserveform = new CreateReservation(vehicletoreserve, Convert.ToInt32(txtuserid.Text));
+                    reserveform.ShowDialog();
+                }
+                else
+                {
+                    { MessageBox.Show("No ha seleccionado nada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                }
             }
+            else if (currentView == ViewType.Reservations)
+            {
+                if (listViewClient.SelectedItems.Count > 0)
+                {
+                    var selecteditem = listViewClient.SelectedItems[0];
+                    var reservationtopay = (Reservation)selecteditem.Tag;
+                    Confirm_Payment confirm_paymentform = new Confirm_Payment(reservationtopay);
+                    confirm_paymentform.ShowDialog();
+                }
+                else
+                {
+                    { MessageBox.Show("No ha seleccionado nada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                }
+            }
+            
         }
         private void clientmenu_Load(object sender, EventArgs e)
         {
@@ -177,6 +255,25 @@ namespace Vehicle_Management.Presentation
         private void txtuserid_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listViewClient.Clear();
+            Reserve_Vehicle.Text = "Pagar";
+            Cancel_Reservation.Visible = true;
+            Reserve_Vehicle.Visible = true;
+            currentView = ViewType.Reservations;
+            EntityToViewList("reservation");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            listViewClient.Clear();
+            currentView = ViewType.Payments;
+            Reserve_Vehicle.Visible=false;
+            Cancel_Reservation.Visible=false;
+            EntityToViewList("payment");
         }
     }
 }

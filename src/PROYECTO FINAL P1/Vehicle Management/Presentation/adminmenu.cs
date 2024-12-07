@@ -60,10 +60,13 @@ namespace Vehicle_Management.Presentation
 
         private void button3_Click(object sender, EventArgs e)
         {
-            currentView = ViewType.Reservations;
-            adminselect.Text = "Gestion de Reservas";
-            adminselect.Visible = true;
             listViewCars.Clear();
+            currentView = ViewType.Reservations;
+            EntityToViewList("reservation");
+            adminselect.Text = "Gestion de Reservas";
+            
+            adminselect.Visible = true;
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -112,36 +115,6 @@ namespace Vehicle_Management.Presentation
                     sidebarexpand = true;
                     sidebartimer.Stop();
                 }
-            }
-        }
-
-        private void ConfigureListViewFor(string entity)
-        {
-            if (entity == "Reservations")
-            {
-                listViewCars.View = View.Details;
-                listViewCars.Columns.Add("ID", 100);
-                listViewCars.Columns.Add("Nombre del cliente", 150);
-                listViewCars.Columns.Add("Vehiculo", 150);
-                listViewCars.Columns.Add("Fecha de inicio", 100);
-                listViewCars.Columns.Add("Fecha de fin", 100);
-            }
-            else if (entity == "Payments")
-            {
-                listViewCars.View = View.Details;
-                listViewCars.Columns.Add("ID de Rago", 100);
-                listViewCars.Columns.Add("ID de Reserva", 150);
-                listViewCars.Columns.Add("Cantidad", 100);
-                listViewCars.Columns.Add("Fecha de Pago", 150);
-                listViewCars.Columns.Add("Metodo de pago", 150);
-            }
-            else if (entity == "Vehicles")
-            {
-
-            }
-            else if (entity == "Clients")
-            {
-
             }
         }
         private void EntityToViewList(string entity)
@@ -217,6 +190,46 @@ namespace Vehicle_Management.Presentation
                     }
                     listViewCars.Items.Add(item);
                 }
+            }
+            else if (entity == "reservation")
+            {
+                listViewCars.Clear();
+                listViewCars.FullRowSelect = true;
+                listViewCars.View = View.Details;
+                listViewCars.Columns.Add("ID Reserva", 150);
+                listViewCars.Columns.Add("ID Cliente", 150);
+                listViewCars.Columns.Add("ID Vehiculo", 150);
+                listViewCars.Columns.Add("Fecha de inicio", 150);
+                listViewCars.Columns.Add("Fecha de fin", 150);
+                listViewCars.Columns.Add("Estado", 150);
+                Reservation reservation = new Reservation();
+                List<Reservation> reservations = new List<Reservation>();
+                reservations = reservation.GetAllReservations();
+
+                foreach (var r in reservations)
+                {
+                    var item = new ListViewItem(r.ReservationId.ToString());
+                    item.SubItems.Add(r.ClientId.ToString());
+                    item.SubItems.Add(r.VehicleId.ToString());                  
+                    item.SubItems.Add(r.StartDate.ToString());
+                    item.SubItems.Add(r.EndDate.ToString());
+                    item.SubItems.Add(r.State.ToString());
+                    item.Tag = r;
+                    if (r != null)
+                    {
+                        item.Tag = r;
+                    }
+                    listViewCars.Items.Add(item);
+                }
+            }
+            else if (entity == "payment")
+            {
+                listViewCars.View = View.Details;
+                listViewCars.Columns.Add("ID de Pago", 100);
+                listViewCars.Columns.Add("ID de Reserva", 150);
+                listViewCars.Columns.Add("Cantidad", 100);
+                listViewCars.Columns.Add("Fecha de Pago", 150);
+                listViewCars.Columns.Add("Metodo de pago", 150);
             }
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -295,6 +308,9 @@ namespace Vehicle_Management.Presentation
                 case ViewType.Payments:
                     EntityToViewList("payment");
                     break;
+                case ViewType.Reservations:
+                    EntityToViewList("reservation");
+                    break;
             }
         }
         private void Update_Vehicle_Click(object sender, EventArgs e)
@@ -306,7 +322,10 @@ namespace Vehicle_Management.Presentation
                 EditVehicle editform = new EditVehicle(vehicletoedit);
                 editform.ShowDialog();
             }
-
+            else
+            {
+                MessageBox.Show("No ha Seleccionado Nada","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
 
         private void sidebar_Paint(object sender, PaintEventArgs e)

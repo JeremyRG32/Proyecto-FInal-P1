@@ -85,6 +85,11 @@ namespace Vehicle_Management.Presentation
         {
 
         }
+
+        private void EditVehicle_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

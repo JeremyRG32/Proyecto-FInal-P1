@@ -41,7 +41,6 @@
             panel3 = new Panel();
             button1 = new Button();
             button3 = new Button();
-            button2 = new Button();
             button4 = new Button();
             sidebartimer = new System.Windows.Forms.Timer(components);
             flowLayoutPanel1 = new FlowLayoutPanel();
@@ -50,6 +49,7 @@
             Reserve_Vehicle = new Button();
             listViewClient = new ListView();
             txtuserid = new TextBox();
+            txtrealuser = new TextBox();
             upperbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -84,9 +84,9 @@
             label1.Location = new Point(65, 0);
             label1.Name = "label1";
             label1.Padding = new Padding(0, 15, 0, 0);
-            label1.Size = new Size(143, 45);
+            label1.Size = new Size(151, 45);
             label1.TabIndex = 50;
-            label1.Text = "Back to Login";
+            label1.Text = "Volver al login";
             // 
             // pictureBox4
             // 
@@ -115,12 +115,12 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(1323, -5);
+            label2.Location = new Point(1257, 3);
             label2.Name = "label2";
             label2.Padding = new Padding(0, 15, 0, 0);
-            label2.Size = new Size(112, 45);
+            label2.Size = new Size(178, 45);
             label2.TabIndex = 52;
-            label2.Text = "Close App";
+            label2.Text = "Cerrar Aplicacion";
             // 
             // pictureBox1
             // 
@@ -155,13 +155,12 @@
             sidebar.Controls.Add(panel3);
             sidebar.Controls.Add(button1);
             sidebar.Controls.Add(button3);
-            sidebar.Controls.Add(button2);
             sidebar.Controls.Add(button4);
             sidebar.Location = new Point(-4, 0);
             sidebar.MaximumSize = new Size(356, 891);
             sidebar.MinimumSize = new Size(75, 100);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(75, 891);
+            sidebar.Size = new Size(306, 891);
             sidebar.TabIndex = 54;
             // 
             // pictureBox2
@@ -195,7 +194,7 @@
             button1.Name = "button1";
             button1.Size = new Size(348, 100);
             button1.TabIndex = 1;
-            button1.Text = "Comprar Vehiculos";
+            button1.Text = "Reservar Vehiculos";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
@@ -214,22 +213,7 @@
             button3.TabIndex = 48;
             button3.Text = "Ver Reservas";
             button3.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.FromArgb(35, 50, 90);
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 12F);
-            button2.ForeColor = Color.White;
-            button2.Image = Properties.Resources.Customer;
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(8, 460);
-            button2.Name = "button2";
-            button2.Size = new Size(348, 100);
-            button2.TabIndex = 47;
-            button2.Text = "Editar Cuenta";
-            button2.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -246,6 +230,7 @@
             button4.TabIndex = 49;
             button4.Text = "Ver Pagos";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // sidebartimer
             // 
@@ -258,9 +243,9 @@
             flowLayoutPanel1.Controls.Add(Cancel_Reservation);
             flowLayoutPanel1.Controls.Add(Reserve_Vehicle);
             flowLayoutPanel1.FlowDirection = FlowDirection.BottomUp;
-            flowLayoutPanel1.Location = new Point(1301, 564);
+            flowLayoutPanel1.Location = new Point(1234, 564);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(255, 321);
+            flowLayoutPanel1.Size = new Size(322, 321);
             flowLayoutPanel1.TabIndex = 60;
             // 
             // Delete_Vehicle
@@ -274,7 +259,7 @@
             Delete_Vehicle.Location = new Point(3, 241);
             Delete_Vehicle.Name = "Delete_Vehicle";
             Delete_Vehicle.Padding = new Padding(25, 0, 0, 0);
-            Delete_Vehicle.Size = new Size(253, 77);
+            Delete_Vehicle.Size = new Size(316, 77);
             Delete_Vehicle.TabIndex = 55;
             Delete_Vehicle.Text = "Eliminar ";
             Delete_Vehicle.UseVisualStyleBackColor = false;
@@ -291,7 +276,7 @@
             Cancel_Reservation.Location = new Point(3, 158);
             Cancel_Reservation.Name = "Cancel_Reservation";
             Cancel_Reservation.Padding = new Padding(25, 0, 0, 0);
-            Cancel_Reservation.Size = new Size(253, 77);
+            Cancel_Reservation.Size = new Size(316, 77);
             Cancel_Reservation.TabIndex = 56;
             Cancel_Reservation.Text = "Cancelar";
             Cancel_Reservation.UseVisualStyleBackColor = false;
@@ -308,7 +293,7 @@
             Reserve_Vehicle.Location = new Point(3, 75);
             Reserve_Vehicle.Name = "Reserve_Vehicle";
             Reserve_Vehicle.Padding = new Padding(25, 0, 0, 0);
-            Reserve_Vehicle.Size = new Size(253, 77);
+            Reserve_Vehicle.Size = new Size(316, 77);
             Reserve_Vehicle.TabIndex = 57;
             Reserve_Vehicle.Text = "Reservar";
             Reserve_Vehicle.UseVisualStyleBackColor = false;
@@ -330,11 +315,20 @@
             // 
             // txtuserid
             // 
-            txtuserid.Location = new Point(1323, 351);
+            txtuserid.Location = new Point(1361, 154);
             txtuserid.Name = "txtuserid";
             txtuserid.Size = new Size(196, 31);
             txtuserid.TabIndex = 62;
+            txtuserid.Visible = false;
             txtuserid.TextChanged += txtuserid_TextChanged;
+            // 
+            // txtrealuser
+            // 
+            txtrealuser.Location = new Point(1362, 197);
+            txtrealuser.Name = "txtrealuser";
+            txtrealuser.Size = new Size(196, 31);
+            txtrealuser.TabIndex = 63;
+            txtrealuser.Visible = false;
             // 
             // clientmenu
             // 
@@ -342,6 +336,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1568, 883);
+            Controls.Add(txtrealuser);
             Controls.Add(txtuserid);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(upperbar);
@@ -378,7 +373,6 @@
         private Panel panel3;
         private Button button1;
         private Button button3;
-        private Button button2;
         private Button button4;
         private System.Windows.Forms.Timer sidebartimer;
         private FlowLayoutPanel flowLayoutPanel1;
@@ -387,5 +381,6 @@
         private Button Reserve_Vehicle;
         private ListView listViewClient;
         private TextBox txtuserid;
+        private TextBox txtrealuser;
     }
 }
