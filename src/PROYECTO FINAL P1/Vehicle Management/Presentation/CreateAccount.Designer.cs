@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAccount));
             button3 = new Button();
             label3 = new Label();
             label2 = new Label();
@@ -244,6 +245,7 @@
             Controls.Add(panel1);
             Controls.Add(button3);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CreateAccount";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CreateAccount";

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateVehicle));
             panel1 = new Panel();
             panel3 = new Panel();
             label1 = new Label();
@@ -375,6 +376,7 @@
             Controls.Add(panel3);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CreateVehicle";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CreateVehicle";

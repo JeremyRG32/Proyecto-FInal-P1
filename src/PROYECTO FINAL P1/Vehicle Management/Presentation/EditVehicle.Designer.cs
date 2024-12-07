@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditVehicle));
             panel1 = new Panel();
             panel2 = new Panel();
             label1 = new Label();
@@ -379,6 +380,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "EditVehicle";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "EditVehicle";

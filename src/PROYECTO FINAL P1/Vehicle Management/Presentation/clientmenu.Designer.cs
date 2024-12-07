@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(clientmenu));
             upperbar = new Panel();
             label1 = new Label();
             pictureBox4 = new PictureBox();
@@ -354,6 +355,7 @@
             Controls.Add(sidebar);
             Controls.Add(listViewClient);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "clientmenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "clientmenu";

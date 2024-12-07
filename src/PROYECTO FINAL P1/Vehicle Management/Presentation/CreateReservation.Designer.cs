@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateReservation));
             label8 = new Label();
             chkavailable = new CheckBox();
             panel10 = new Panel();
@@ -49,15 +50,15 @@
             label3 = new Label();
             label2 = new Label();
             panel1 = new Panel();
+            txtclientid = new TextBox();
             label1 = new Label();
+            txtvehicleid = new TextBox();
             panel6 = new Panel();
             txtprice = new TextBox();
             label9 = new Label();
             button1 = new Button();
             Confirm_Creation = new Button();
             label10 = new Label();
-            txtvehicleid = new TextBox();
-            txtclientid = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -256,6 +257,19 @@
             panel1.Size = new Size(1054, 98);
             panel1.TabIndex = 111;
             // 
+            // txtclientid
+            // 
+            txtclientid.BorderStyle = BorderStyle.None;
+            txtclientid.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtclientid.Location = new Point(794, 56);
+            txtclientid.Name = "txtclientid";
+            txtclientid.ReadOnly = true;
+            txtclientid.Size = new Size(197, 24);
+            txtclientid.TabIndex = 121;
+            txtclientid.TextAlign = HorizontalAlignment.Center;
+            txtclientid.Visible = false;
+            txtclientid.TextChanged += txtclientid_TextChanged;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -268,6 +282,18 @@
             label1.TabIndex = 1;
             label1.Text = "Confirmar Reserva";
             label1.Click += label1_Click;
+            // 
+            // txtvehicleid
+            // 
+            txtvehicleid.BorderStyle = BorderStyle.None;
+            txtvehicleid.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtvehicleid.Location = new Point(43, 56);
+            txtvehicleid.Name = "txtvehicleid";
+            txtvehicleid.ReadOnly = true;
+            txtvehicleid.Size = new Size(197, 24);
+            txtvehicleid.TabIndex = 120;
+            txtvehicleid.TextAlign = HorizontalAlignment.Center;
+            txtvehicleid.Visible = false;
             // 
             // panel6
             // 
@@ -335,31 +361,6 @@
             label10.TabIndex = 119;
             label10.Text = "Marca";
             // 
-            // txtvehicleid
-            // 
-            txtvehicleid.BorderStyle = BorderStyle.None;
-            txtvehicleid.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtvehicleid.Location = new Point(43, 56);
-            txtvehicleid.Name = "txtvehicleid";
-            txtvehicleid.ReadOnly = true;
-            txtvehicleid.Size = new Size(197, 24);
-            txtvehicleid.TabIndex = 120;
-            txtvehicleid.TextAlign = HorizontalAlignment.Center;
-            txtvehicleid.Visible = false;
-            // 
-            // txtclientid
-            // 
-            txtclientid.BorderStyle = BorderStyle.None;
-            txtclientid.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtclientid.Location = new Point(794, 56);
-            txtclientid.Name = "txtclientid";
-            txtclientid.ReadOnly = true;
-            txtclientid.Size = new Size(197, 24);
-            txtclientid.TabIndex = 121;
-            txtclientid.TextAlign = HorizontalAlignment.Center;
-            txtclientid.Visible = false;
-            txtclientid.TextChanged += txtclientid_TextChanged;
-            // 
             // CreateReservation
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -394,6 +395,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CreateReservation";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CreateReservation";

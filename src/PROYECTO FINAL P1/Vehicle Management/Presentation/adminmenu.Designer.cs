@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(adminmenu));
             pictureBox4 = new PictureBox();
             label1 = new Label();
             button1 = new Button();
@@ -49,6 +50,7 @@
             Update_Vehicle = new Button();
             Create_Vehicle = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             upperbar.SuspendLayout();
@@ -166,6 +168,7 @@
             // upperbar
             // 
             upperbar.BackColor = Color.FromArgb(35, 50, 90);
+            upperbar.Controls.Add(label3);
             upperbar.Controls.Add(pictureBox3);
             upperbar.Controls.Add(label1);
             upperbar.Controls.Add(pictureBox4);
@@ -332,6 +335,18 @@
             flowLayoutPanel1.Size = new Size(302, 253);
             flowLayoutPanel1.TabIndex = 59;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 11F);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(1272, 93);
+            label3.Name = "label3";
+            label3.Padding = new Padding(0, 15, 0, 0);
+            label3.Size = new Size(150, 45);
+            label3.TabIndex = 59;
+            label3.Text = "Refrescar Lista";
+            // 
             // adminmenu
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -343,6 +358,7 @@
             Controls.Add(sidebar);
             Controls.Add(listViewCars);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "adminmenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "adminmenu";
@@ -380,5 +396,6 @@
         private Button Create_Vehicle;
         private PictureBox pictureBox3;
         private FlowLayoutPanel flowLayoutPanel1;
+        private Label label3;
     }
 }

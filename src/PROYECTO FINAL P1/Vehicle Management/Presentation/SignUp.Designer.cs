@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUp2));
             button2 = new Button();
             panel1 = new Panel();
             button3 = new Button();
@@ -200,6 +201,7 @@
             Controls.Add(panel1);
             Controls.Add(button2);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "SignUp2";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SignUp";

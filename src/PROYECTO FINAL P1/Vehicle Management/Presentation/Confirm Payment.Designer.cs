@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Confirm_Payment));
             label10 = new Label();
             button1 = new Button();
             Confirm_Creation = new Button();
@@ -210,6 +211,7 @@
             Controls.Add(panel5);
             Controls.Add(txtamount);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Confirm_Payment";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Confirm_Payment";
